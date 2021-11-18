@@ -10,7 +10,7 @@ def randomFun():
     randomWord = things[randomSelection]
     return randomWord
 
-#Here we keep the letter index
+# Here we keep the letter index
 def letterStorage():
 
     pass
