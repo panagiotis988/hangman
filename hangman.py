@@ -1,9 +1,4 @@
 # Αυτό το παιχνίδι είναι γνωστό και ώς κρεμάλα και οι λεξεις ειναι γραμμένες στα αγγλικά
-things = ['door', 'look', 'aggresive', 'book', 'positive', 'negative', 'optimistic', 'thankfull', 'poor', 'rich',
-          'sensitive']
-import random
-
-
 # Here we choose random name for our board
 def randomFun():
     randomSelection = random.randint(0, 10)
@@ -17,31 +12,31 @@ def letterStorage():
 
 
 # Here we cut the letter from the string
-def trimWord(s):
-    trimmed = randomWord
-    correctLetters=[]
+def trimWord(userInput):
     count=0
-    for trimLetter in randomWord:
-        if trimLetter == userInput:
-            trimmed = trimmed[: trimmed.find(userInput)] +" "+ trimmed[trimmed.find(userInput) + 1:]
-            correctLetters.insert(count,userInput)
-        count+=1
-    print (correctLetters)
-    return correctLetters
+    newWord=userWord
+    for letter in randomWord:
+        if userInput ==letter :
+            newWord= newWord[:count]+ userInput+ newWord[count+1:]
+    trimmed=randomWord.replace(userInput,'')
+    print (newWord)
+    return  trimmed, newWord
 
 
-
+things = ['door', 'look', 'aggresive', 'book', 'positive', 'negative', 'optimistic', 'thankfull', 'poor', 'rich',
+          'sensitive']
+import random
 print('Hello le\'s play hangman toghether')
 randomWord = randomFun()
 userWord = ""
+trimmed = randomWord
 userChoice = 6
 print(' Από τη στιγμή που θα ξεκινησεις να επιλέγεις έχεις άλλες 5 προσπάθειες   ', randomWord, 'is the word')
-while randomWord != userWord and userChoice > 0:
-    userInput = input('Type a letter that do you think is inn the word: ').lower()
+while userWord != trimmed  and userChoice > 0:
+    userInput = input('Type a letter that do you think is in the word: ').lower()
     if randomWord.find(userInput) != -1:
-        s=trimWord(userInput)
-        print(s)
-        print(randomWord.find(userInput))
+        userWord=trimWord(userInput)
+        print(userWord)
     else:
         print('ton hpiame')
 
